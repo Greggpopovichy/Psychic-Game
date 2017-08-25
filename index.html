@@ -40,6 +40,7 @@ document.onKeyUp = function(event) {
 
     if (userGuess === computerGuess) {
         wins++;
+        guessesLeft= 9;
         guessesSoFar.length = 0;
     }
 
@@ -53,6 +54,7 @@ document.onKeyUp = function(event) {
         guessesLeft--;
 
     }
+//Having trouble linking the HTML to my javascript...
 
     var html = "<h5>The Psychic Game</h5>" +
         "<p>Guess what letter I'm thinking of</p>" +
