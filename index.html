@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework Option 1</title>
+</head>
+
+<body>
+
+<div id="Psychic-game">
+<h5>Psychic Game</h5>
+<p>Guess what letter I'm thinking of</p>
+<p>Wins:</p>
+<p>Losses:</p>
+<p>Guesses Left:</p>
+<p>Guesses So Far:</p>
+</div>
+
+<script type = "text/javascript">
+
+// The computer will generate a random letter. This letter will be stored in the "guess" id. When a user clicks the same letter that the computer has chosen, the computer will generate a new random letter.
+
+
+var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var wins = 0;
+var losses = 0;
+var guessesLeft = 9;
+var guessesSoFar =[];
+
+
+// The user will click on a letter on their keyboard which will be their "guess". The user's guess is written to id "guesses_so_far". Each time the user selects the same letter the computer randomly selected, "guesses_so_far" resets.
+
+document.onKeyUp = function(event) {
+
+    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+    guessesSoFar.push(userGuess);
+
+    if (userGuess === computerGuess) {
+        wins++;
+        guessesSoFar.length = 0;
+    }
+
+    else if (guessesLeft === 0) {
+        losses++;
+        guessesLeft = 9;
+        guessesSoFar.length = 0;
+    }
+
+    else if (userGuess !== computerGuess) {
+        guessesLeft--;
+
+    }
+
+    var html = "<h5>The Psychic Game</h5>" +
+        "<p>Guess what letter I'm thinking of</p>" +
+        "<p>Wins: " + wins + "</p>" +
+        "<p>Losses: " + losses + "</p>" +
+        "<p>Guesses Left: " + guessesLeft + "</p>" +
+        "<p>Guesses So Far: " + guessesSoFar + "</p>";
+
+    document.querySelector("#Psychic-game").innerHTML = html;
+
+}
+// The "guesses_left" id will have a counter that will be initialized at 9. Each time the user selects a letter that does not match the computer selected letter, the counter will decrease by one. When the counter gets to 0, the "losses" id is increased by 1.
+
+// When the user clicks the same letter that corresponds to the letter the computer initially selected, the "wins" id will have a counter that is increased by one.
+
+
+</script>
+
+</body>
+</html>
